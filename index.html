@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Del Schlangen | AI Policy, Emerging Technology & Law</title>
+    <meta name="description" content="Strategic Foresight Practitioner, independent researcher, and JD candidate at the University of Denver Sturm College of Law. Writing on AI, emerging technology, law, and national strategy through Statute & Circuit.">
+    <meta name="author" content="Del Schlangen">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://delschlangen.com/">
+
+    <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Del Schlangen | AI Policy, Emerging Technology & Law">
+    <meta property="og:description" content="Strategic Foresight Practitioner, independent researcher, and JD candidate. Writing on AI, emerging technology, law, and national strategy through Statute & Circuit.">
+    <meta property="og:url" content="https://delschlangen.com/">
+    <meta property="og:site_name" content="Del Schlangen">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@editorstatute">
+    <meta name="twitter:title" content="Del Schlangen | AI Policy, Emerging Technology & Law">
+    <meta name="twitter:description" content="Strategic Foresight Practitioner, independent researcher, and JD candidate. Writing on AI, emerging technology, law, and national strategy.">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Del Schlangen",
+        "url": "https://delschlangen.com",
+        "jobTitle": "Strategic Foresight Practitioner",
+        "description": "Independent researcher and JD candidate at the University of Denver Sturm College of Law, with two decades of intelligence and security experience.",
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "University of Denver Sturm College of Law"
+        },
+        "knowsAbout": ["Artificial Intelligence Policy", "Emerging Technology Law", "National Security", "Strategic Foresight", "Autonomous Weapons Governance"],
+        "sameAs": [
+            "http://www.linkedin.com/in/del-s-759557175",
+            "https://github.com/delschlangen",
+            "https://x.com/editorstatute",
+            "https://medium.com/@delschlangen_22694",
+            "https://medium.com/statute-circuit",
+            "https://www.reddit.com/user/StatuteCircuitEditor/"
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0c;
+            --bg-secondary: #111116;
+            --bg-card: #16161c;
+            --bg-card-hover: #1c1c24;
+            --border: #2a2a35;
+            --border-accent: #3d3d4a;
+            --text-primary: #e8e6e3;
+            --text-secondary: #9a9898;
+            --text-muted: #5e5e66;
+            --accent: #c9a84c;
+            --accent-dim: rgba(201, 168, 76, 0.12);
+            --accent-glow: rgba(201, 168, 76, 0.06);
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- Subtle background texture --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(ellipse at 20% 0%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(201, 168, 76, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(42, 42, 53, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .nav-mark {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+        }
+
+        .hero-content {
+            max-width: 780px;
+        }
+
+        .hero-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-bio {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.8s forwards;
+        }
+
+        .hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .hero-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* --- Section Headers --- */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* --- Blog Carousel --- */
+        .carousel-wrapper {
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding-bottom: 1rem;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .blog-card {
+            flex: 0 0 340px;
+            scroll-snap-align: start;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+        }
+
+        .blog-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            filter: grayscale(30%) contrast(1.05);
+            transition: filter 0.35s ease;
+        }
+
+        .blog-card:hover .blog-card-img {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .blog-card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-date {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-card-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            line-height: 1.35;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .blog-card-read {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            justify-content: flex-end;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .carousel-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .loading-indicator {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            padding: 3rem 0;
+        }
+
+        .view-all-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: gap 0.3s ease;
+        }
+
+        .view-all-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* --- Publications --- */
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .pub-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: baseline;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .pub-item:hover {
+            padding-left: 0.5rem;
+        }
+
+        .pub-item:hover .pub-title {
+            color: var(--accent);
+        }
+
+        .pub-year {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            min-width: 3rem;
+        }
+
+        .pub-info {
+            min-width: 0;
+        }
+
+        .pub-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .pub-venue {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+
+        .pub-citations {
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            line-height: 1.5;
+            padding-left: 0.75rem;
+            border-left: 2px solid var(--accent-dim);
+        }
+
+        .pub-type {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.6rem;
+            border-radius: 2px;
+            white-space: nowrap;
+            align-self: center;
+        }
+
+        .pub-placeholder {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 1.5rem 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-text {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.25rem;
+            }
+
+            .nav-links {
+                gap: 1.25rem;
+            }
+
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 8rem;
+                padding-bottom: 3rem;
+            }
+
+            section {
+                padding: 3.5rem 0;
+            }
+
+            .blog-card {
+                flex: 0 0 280px;
+            }
+
+            .pub-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .pub-year {
+                order: -1;
+            }
+
+            .pub-type {
+                justify-self: start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.6rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-bio {
+                font-size: 1rem;
+            }
+
+            .hero-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-mark">DS</div>
+        <ul class="nav-links">
+            <li><a href="#writing">Writing</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#connect">Connect</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header>
+    <section class="hero" role="banner">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">AI · Emerging Technology · Law · National Strategy</div>
+                <h1>Del Schlangen</h1>
+                <p class="hero-bio">
+                    Strategic Foresight Practitioner, independent researcher, and JD candidate (2026) at the University of Denver Sturm College of Law, with two decades of intelligence and security experience. Writing at the intersection of artificial intelligence, emerging technology, law, and national strategy through <em>Statute &amp; Circuit</em>.
+                </p>
+                <div class="hero-links">
+                    <a href="http://www.linkedin.com/in/del-s-759557175" target="_blank" rel="noopener" class="hero-link">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/delschlangen" target="_blank" rel="noopener" class="hero-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://x.com/editorstatute" target="_blank" rel="noopener" class="hero-link">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        X
+                    </a>
+                    <a href="https://medium.com/statute-circuit" target="_blank" rel="noopener" class="hero-link">
+                        <svg viewBox="0 0 24 24"><path d="M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3A2 2 0 001 6v12a2 2 0 002 2h18a2 2 0 002-2V6a2 2 0 00-2-2zm0 14H3V6h18zM4 9h5v6H4z"/></svg>
+                        Statute &amp; Circuit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    </header>
+
+    <main>
+    <!-- Writing / Blog Carousel -->
+    <section id="writing">
+        <div class="container reveal">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">Latest Writing</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="blogCarousel">
+                    <div class="loading-indicator">Loading latest posts...</div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn" aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn" aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 MEDIUM FEED CONFIGURATION
+                 
+                 Replace the URL below with your Medium RSS feed:
+                 
+                 If your publication is "Statute and Circuit":
+                   https://medium.com/feed/statute-and-circuit
+                 
+                 If using your personal profile:
+                   https://medium.com/feed/@your-username
+                 
+                 Just update the MEDIUM_FEED_URL variable in the <script>
+                 section at the bottom of this file.
+                 ============================================================ -->
+
+            <a href="https://medium.com/@delschlangen_22694" target="_blank" rel="noopener" class="view-all-link">
+                View all on Medium →
+            </a>
+        </div>
+    </section>
+
+    <!-- Academic Publications -->
+    <section id="publications">
+        <div class="container reveal">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Publications</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="pub-list" id="pubList">
+                <a href="https://firearmsresearchcenter.org/working_papers/the-debate-over-the-atf-digitizing-gun-sales-records-from-out-of-business-firearms-dealers/" class="pub-item" target="_blank" rel="noopener">
+                    <span class="pub-year">2025</span>
+                    <div class="pub-info">
+                        <div class="pub-title">The Debate Over the ATF Digitizing Gun Sales Records from Out-of-Business Firearms Dealers</div>
+                        <div class="pub-venue">Firearms Research Center · Working Paper</div>
+                        <div class="pub-citations">Cited in <em>Firearms Law and the Second Amendment: Regulation, Rights, and Policy</em> (2024 Supplement), Reason, Bearing Arms, AmmolandTV, PoliScore, and others.</div>
+                    </div>
+                    <span class="pub-type">Paper</span>
+                </a>
+
+                <!-- 
+                     ADD FUTURE PUBLICATIONS HERE
+                     
+                     Template:
+
+                <a href="URL" class="pub-item" target="_blank" rel="noopener">
+                    <span class="pub-year">YEAR</span>
+                    <div class="pub-info">
+                        <div class="pub-title">Title of Work</div>
+                        <div class="pub-venue">Journal or Venue · Type</div>
+                    </div>
+                    <span class="pub-type">Paper</span>
+                </a>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect -->
+    <section id="connect">
+        <div class="container reveal">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Connect</h2>
+                <div class="section-line"></div>
+            </div>
+            <p style="color: var(--text-secondary); font-weight: 300; font-size: 1.05rem; max-width: 500px; line-height: 1.8;">
+                For collaboration, speaking inquiries, or conversations about AI policy and emerging technology law.
+            </p>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="http://www.linkedin.com/in/del-s-759557175" target="_blank" rel="noopener" class="hero-link">LinkedIn</a>
+                <a href="https://github.com/delschlangen" target="_blank" rel="noopener" class="hero-link">GitHub</a>
+                <a href="https://x.com/editorstatute" target="_blank" rel="noopener" class="hero-link">X</a>
+                <a href="https://www.reddit.com/user/StatuteCircuitEditor/" target="_blank" rel="noopener" class="hero-link">Reddit</a>
+                <a href="https://medium.com/statute-circuit" target="_blank" rel="noopener" class="hero-link">Statute &amp; Circuit</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-text">&copy; <span id="year"></span> Del Schlangen</span>
+                <div class="footer-links">
+                    <a href="http://www.linkedin.com/in/del-s-759557175" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://github.com/delschlangen" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    </a>
+                    <a href="https://x.com/editorstatute" target="_blank" rel="noopener" aria-label="X">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // CONFIGURATION - UPDATE THESE VALUES
+        // ============================================================
+        
+        const MEDIUM_FEED_URL = 'https://medium.com/feed/@delschlangen_22694';
+        
+        // ============================================================
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Carousel controls
+        const track = document.getElementById('blogCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -360, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            track.scrollBy({ left: 360, behavior: 'smooth' });
+        });
+
+        // Fetch Medium RSS via rss2json (primary) with corsproxy fallback
+        async function loadMediumPosts() {
+            const feedUrl = encodeURIComponent(MEDIUM_FEED_URL);
+            
+            // Try rss2json first (works great on deployed sites)
+            const endpoints = [
+                `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`,
+                `https://api.allorigins.win/raw?url=${feedUrl}`
+            ];
+
+            let items = null;
+
+            // Attempt rss2json
+            try {
+                const response = await fetch(endpoints[0]);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.status === 'ok' && data.items && data.items.length > 0) {
+                        items = data.items;
+                    }
+                }
+            } catch (e) {
+                console.log('rss2json unavailable, trying fallback...');
+            }
+
+            // Attempt allorigins proxy + manual XML parse
+            if (!items) {
+                try {
+                    const response = await fetch(endpoints[1]);
+                    if (response.ok) {
+                        const text = await response.text();
+                        const parser = new DOMParser();
+                        const xml = parser.parseFromString(text, 'text/xml');
+                        const xmlItems = xml.querySelectorAll('item');
+                        if (xmlItems.length > 0) {
+                            items = Array.from(xmlItems).map(item => ({
+                                title: item.querySelector('title')?.textContent || '',
+                                link: item.querySelector('link')?.textContent || '',
+                                pubDate: item.querySelector('pubDate')?.textContent || '',
+                                description: item.querySelector('description')?.textContent || '',
+                                thumbnail: ''
+                            }));
+                        }
+                    }
+                } catch (e) {
+                    console.log('Fallback also unavailable.');
+                }
+            }
+
+            if (!items || items.length === 0) {
+                track.innerHTML = `
+                    <a href="https://medium.com/@delschlangen_22694" target="_blank" rel="noopener" class="blog-card" style="flex: 0 0 100%; justify-content: center; align-items: center; min-height: 160px;">
+                        <div class="blog-card-body" style="text-align: center;">
+                            <div class="blog-card-title">Read Statute &amp; Circuit on Medium</div>
+                            <div class="blog-card-excerpt">Latest posts on AI policy, emerging technology, law, and national strategy.</div>
+                            <div class="blog-card-read">Visit publication →</div>
+                        </div>
+                    </a>`;
+                return;
+            }
+
+            track.innerHTML = '';
+
+            items.slice(0, 10).forEach(item => {
+                // Extract thumbnail
+                let thumbnail = item.thumbnail || '';
+                if (!thumbnail && item.description) {
+                    const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
+                    if (imgMatch) thumbnail = imgMatch[1];
+                }
+
+                // Extract plain text excerpt
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = item.description || '';
+                const plainText = tempDiv.textContent || tempDiv.innerText || '';
+                const excerpt = plainText.substring(0, 140).trim() + '...';
+
+                // Format date
+                const date = new Date(item.pubDate);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const card = document.createElement('a');
+                card.href = item.link;
+                card.target = '_blank';
+                card.rel = 'noopener';
+                card.className = 'blog-card';
+                card.innerHTML = `
+                    ${thumbnail ? `<img class="blog-card-img" src="${thumbnail}" alt="" loading="lazy">` : ''}
+                    <div class="blog-card-body">
+                        <div class="blog-card-date">${formattedDate}</div>
+                        <div class="blog-card-title">${item.title}</div>
+                        <div class="blog-card-excerpt">${excerpt}</div>
+                        <div class="blog-card-read">Read →</div>
+                    </div>
+                `;
+                track.appendChild(card);
+            });
+        }
+
+        loadMediumPosts();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://delschlangen.com/sitemap.xml
