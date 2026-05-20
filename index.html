@@ -967,10 +967,9 @@
         // Fetch Medium RSS
         async function loadMediumPosts() {
             const feedUrl = encodeURIComponent(MEDIUM_FEED_URL);
-            const cacheBust = Date.now();
             const endpoints = [
-                `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}&count=20&_=${cacheBust}`,
-                `https://api.allorigins.win/raw?url=${feedUrl}&_=${cacheBust}`
+                `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`,
+                `https://api.allorigins.win/raw?url=${feedUrl}`
             ];
 
             let items = null;
