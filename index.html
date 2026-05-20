@@ -932,7 +932,7 @@
 
     <script>
         // Configuration
-        const MEDIUM_FEED_URL = 'https://medium.com/feed/@delschlangen_22694';
+        const MEDIUM_FEED_URL = 'https://medium.com/feed/statute-circuit';
 
         // Set current year
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -967,9 +967,10 @@
         // Fetch Medium RSS
         async function loadMediumPosts() {
             const feedUrl = encodeURIComponent(MEDIUM_FEED_URL);
+            const cacheBust = Date.now();
             const endpoints = [
-                `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`,
-                `https://api.allorigins.win/raw?url=${feedUrl}`
+                `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}&count=20&_=${cacheBust}`,
+                `https://api.allorigins.win/raw?url=${feedUrl}&_=${cacheBust}`
             ];
 
             let items = null;
@@ -1023,7 +1024,7 @@
 
             track.innerHTML = '';
 
-            items.slice(0, 10).forEach(item => {
+            items.slice(0, 20).forEach(item => {
                 let thumbnail = item.thumbnail || '';
                 if (!thumbnail && item.description) {
                     const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
