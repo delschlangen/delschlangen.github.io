@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Del Schlangen | AI Policy, Emerging Technology & Law</title>
-    <meta name="description" content="AI governance expert, legal researcher, strategic intelligence professional and JD candidate at the University of Denver Sturm College of Law. Writing on AI, emerging technology, law, and national strategy through Statute & Circuit.">
+    <meta name="description" content="Legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security. Writing on emerging technology, civil liberties, national security, and government power.">
     <meta name="author" content="Del Schlangen">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://delschlangen.com/">
@@ -12,7 +12,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Del Schlangen | AI Policy, Emerging Technology & Law">
-    <meta property="og:description" content="AI governance expert, legal researcher, strategic intelligence professional and JD candidate. Writing on AI, emerging technology, law, and national strategy through Statute & Circuit.">
+    <meta property="og:description" content="Legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security. Writing on emerging technology, civil liberties, national security, and government power.">
     <meta property="og:url" content="https://delschlangen.com/">
     <meta property="og:site_name" content="Del Schlangen">
     <meta property="og:locale" content="en_US">
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@editorstatute">
     <meta name="twitter:title" content="Del Schlangen | AI Policy, Emerging Technology & Law">
-    <meta name="twitter:description" content="AI governance expert, legal researcher, strategic intelligence professional and JD candidate. Writing on AI, emerging technology, law, and national strategy.">
+    <meta name="twitter:description" content="Legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security. Writing on emerging technology, civil liberties, national security, and government power.">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -30,12 +30,26 @@
         "@type": "Person",
         "name": "Del Schlangen",
         "url": "https://delschlangen.com",
-        "jobTitle": "AI governance expert, legal researcher, strategic intelligence professional",
-        "description": "Independent researcher and JD candidate at the University of Denver Sturm College of Law, with two decades of intelligence and security experience.",
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "University of Denver Sturm College of Law"
+        "jobTitle": "Legal and policy researcher, strategic intelligence professional",
+        "description": "Legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security, writing on emerging technology, civil liberties, national security, and government power. Based in Washington, D.C.",
+        "homeLocation": {
+            "@type": "Place",
+            "name": "Washington, D.C."
         },
+        "alumniOf": [
+            {
+                "@type": "EducationalOrganization",
+                "name": "University of Denver Sturm College of Law"
+            },
+            {
+                "@type": "EducationalOrganization",
+                "name": "American Military University"
+            },
+            {
+                "@type": "EducationalOrganization",
+                "name": "George Mason University"
+            }
+        ],
         "affiliation": {
             "@type": "Organization",
             "name": "Orion Policy Institute"
@@ -168,6 +182,65 @@
         }
 
         section { padding: 5rem 0; }
+
+        /* Venue Strip */
+        .venues {
+            padding: 0 0 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .venues-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+            padding-top: 3.5rem;
+        }
+
+        .venue-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .venue-card {
+            display: block;
+            background: var(--bg-card);
+            padding: 1.75rem 1.5rem;
+            text-decoration: none;
+            transition: background 0.25s ease;
+        }
+
+        .venue-card:hover { background: var(--bg-card-hover); }
+
+        .venue-name {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            transition: color 0.25s ease;
+        }
+
+        .venue-card:hover .venue-name { color: var(--accent); }
+
+        .venue-role {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.65rem;
+        }
+
+        .venue-desc {
+            font-size: 0.85rem;
+            line-height: 1.55;
+            color: var(--text-secondary);
+        }
 
         /* Hero */
         .hero {
@@ -644,6 +717,7 @@
             nav { padding: 1rem 1.25rem; }
             .nav-links { gap: 1.25rem; }
             .container { padding: 0 1.25rem; }
+            .venue-grid { grid-template-columns: 1fr; }
             .hero { min-height: auto; padding-top: 8rem; padding-bottom: 3rem; }
             section { padding: 3.5rem 0; }
             .blog-card { flex: 0 0 280px; }
@@ -669,8 +743,8 @@
     <nav>
         <div class="nav-mark">DS</div>
         <ul class="nav-links">
-            <li><a href="#writing">Writing</a></li>
             <li><a href="#publications">Publications</a></li>
+            <li><a href="#writing">Essays</a></li>
             <li><a href="#cv">CV</a></li>
             <li><a href="#connect">Connect</a></li>
         </ul>
@@ -684,7 +758,7 @@
                 <div class="hero-label">AI · Emerging Technology · Law · National Strategy</div>
                 <h1>Del Schlangen</h1>
                 <p class="hero-bio">
-                    AI governance expert, legal researcher, strategic intelligence professional and JD candidate (2026) at the University of Denver Sturm College of Law, with two decades of intelligence and security experience. Non-Resident Fellow at Orion Policy Institute. Writing at the intersection of artificial intelligence, emerging technology, law, and national strategy through <em>Statute &amp; Circuit</em>.
+                    Legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security, writing on emerging technology, civil liberties, national security, and government power. Based in Washington, D.C. Holds a J.D. from the University of Denver Sturm College of Law, an M.P.P. from American Military University, and a B.S. in Public Administration from George Mason University.
                 </p>
                 <div class="hero-links">
                     <a href="http://www.linkedin.com/in/del-schlangen-759557175" target="_blank" rel="noopener" class="hero-link">
@@ -706,32 +780,27 @@
     </header>
 
     <main>
-    <!-- Writing / Blog Carousel -->
-    <section id="writing">
+    <!-- Venue Strip -->
+    <section class="venues">
         <div class="container reveal">
-            <div class="section-header">
-                <span class="section-number">01</span>
-                <h2 class="section-title">Latest Writing</h2>
-                <div class="section-line"></div>
+            <div class="venues-label">Where I Publish</div>
+            <div class="venue-grid">
+                <a href="https://orionpolicy.org/author/dschlangen/" target="_blank" rel="noopener" class="venue-card">
+                    <div class="venue-name">Orion Policy Institute</div>
+                    <div class="venue-role">Non-Resident Fellow</div>
+                    <div class="venue-desc">Policy briefs on AI governance, cybersecurity, and federal measurement gaps.</div>
+                </a>
+                <a href="https://firearmsresearchcenter.org/working-papers/" target="_blank" rel="noopener" class="venue-card">
+                    <div class="venue-name">Firearms Research Center</div>
+                    <div class="venue-role">University of Wyoming</div>
+                    <div class="venue-desc">Working papers and forum commentary on firearms law, records policy, and privacy.</div>
+                </a>
+                <a href="https://medium.com/statute-circuit" target="_blank" rel="noopener" class="venue-card">
+                    <div class="venue-name">Statute &amp; Circuit</div>
+                    <div class="venue-role">Editor</div>
+                    <div class="venue-desc">Long-form essays on emerging technology, civil liberties, and government power.</div>
+                </a>
             </div>
-
-            <div class="carousel-wrapper">
-                <div class="carousel-track" id="blogCarousel">
-                    <div class="loading-indicator">Loading latest posts...</div>
-                </div>
-                <div class="carousel-nav">
-                    <button class="carousel-btn" id="prevBtn" aria-label="Previous">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                    </button>
-                    <button class="carousel-btn" id="nextBtn" aria-label="Next">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <a href="https://medium.com/@delschlangen_22694" target="_blank" rel="noopener" class="view-all-link">
-                View all on Medium →
-            </a>
         </div>
     </section>
 
@@ -739,7 +808,7 @@
     <section id="publications">
         <div class="container reveal">
             <div class="section-header">
-                <span class="section-number">02</span>
+                <span class="section-number">01</span>
                 <h2 class="section-title">Publications</h2>
                 <div class="section-line"></div>
             </div>
@@ -747,12 +816,20 @@
             <div class="pub-list" id="pubList">
                 <div class="cv-category-label">Working Papers</div>
 
+                <a href="https://firearmsresearchcenter.org/working_papers/use-of-reasonable-in-gun-control-advocacy/" class="pub-item" target="_blank" rel="noopener">
+                    <span class="pub-year">2026</span>
+                    <div class="pub-info">
+                        <div class="pub-title">Use of ‘Reasonable’ in Gun Control Advocacy</div>
+                        <div class="pub-venue">Firearms Research Center · Working Paper</div>
+                    </div>
+                    <span class="pub-type">Paper</span>
+                </a>
+
                 <a href="https://firearmsresearchcenter.org/working_papers/congress-banned-a-gun-registry-ai-inference-may-render-the-prohibition-obsolete/" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-year">2026</span>
                     <div class="pub-info">
                         <div class="pub-title">Congress Banned a Gun Registry; AI Inference May Render the Prohibition Obsolete</div>
                         <div class="pub-venue">Firearms Research Center · Working Paper</div>
-                        <div class="pub-citations">Cited in Texas Gun Rights and Ammoland Inc.</div>
                     </div>
                     <span class="pub-type">Paper</span>
                 </a>
@@ -762,12 +839,20 @@
                     <div class="pub-info">
                         <div class="pub-title">The Debate Over the ATF Digitizing Gun Sales Records from Out-of-Business Firearms Dealers</div>
                         <div class="pub-venue">Firearms Research Center · Working Paper</div>
-                        <div class="pub-citations">Cited in <em>Firearms Law and the Second Amendment: Regulation, Rights, and Policy</em> (2024 Supplement), Reason, Bearing Arms, AmmolandTV, PoliScore, and others.</div>
                     </div>
                     <span class="pub-type">Paper</span>
                 </a>
 
                 <div class="cv-category-label" style="margin-top: 2.5rem;">Policy Briefs &amp; Commentary</div>
+
+                <a href="https://orionpolicy.org/before-medical-ai-learns-on-the-job-fda-should-test-its-teacher/" class="pub-item" target="_blank" rel="noopener">
+                    <span class="pub-year">2026</span>
+                    <div class="pub-info">
+                        <div class="pub-title">Before Medical AI Learns on the Job, FDA Should Test Its Teacher</div>
+                        <div class="pub-venue">Orion Policy Institute · Policy Brief</div>
+                    </div>
+                    <span class="pub-type">Brief</span>
+                </a>
 
                 <a href="https://orionpolicy.org/washingtons-ai-ban-and-reversal-exposed-the-bigger-problem-it-cant-measure-cyber-risk-in-the-real-world/" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-year">2026</span>
@@ -801,6 +886,35 @@
         </div>
     </section>
 
+    <!-- Writing / Blog Carousel -->
+    <section id="writing">
+        <div class="container reveal">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Essays</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="blogCarousel">
+                    <div class="loading-indicator">Loading latest posts...</div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn" aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn" aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <a href="https://medium.com/@delschlangen_22694" target="_blank" rel="noopener" class="view-all-link">
+                View all on Medium →
+            </a>
+        </div>
+    </section>
+
     <!-- CV -->
     <section id="cv">
         <div class="container reveal">
@@ -816,7 +930,17 @@
             </button>
 
             <div class="cv-content" id="cvContent">
-                <div class="cv-category-label">Professional Experience</div>
+                <div class="cv-category-label">Fellowships &amp; Affiliations</div>
+
+                <div class="cv-entry">
+                    <span class="cv-dates">2026–Present</span>
+                    <div class="cv-info">
+                        <div class="cv-org">Orion Policy Institute</div>
+                        <div class="cv-role">Non-Resident Fellow</div>
+                    </div>
+                </div>
+
+                <div class="cv-category-label" style="margin-top: 2.5rem;">Professional Experience</div>
 
                 <div class="cv-entry">
                     <span class="cv-dates">2019–Present</span>
@@ -1089,4 +1213,3 @@
 
 </body>
 </html>
-
