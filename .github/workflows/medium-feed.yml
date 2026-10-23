@@ -1,0 +1,70 @@
+# Saves the Medium feed into medium.json so the Essays carousel on
+# delschlangen.com reads its posts from the site itself, with no
+# third-party relay involved at page load.
+name: Sync Medium feed
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: medium-feed
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Fetch Medium feed into medium.json
+        shell: python3 {0}
+        run: |
+          import json, re, sys, urllib.request
+          import xml.etree.ElementTree as ET
+
+          FEED = "https://medium.com/feed/@delschlangen_22694"
+          request = urllib.request.Request(FEED, headers={
+              "User-Agent": "Mozilla/5.0 (compatible; delschlangen.com feed sync; +https://delschlangen.com)",
+              "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
+          })
+          with urllib.request.urlopen(request, timeout=30) as response:
+              root = ET.fromstring(response.read())
+
+          content_ns = {"content": "http://purl.org/rss/1.0/modules/content/"}
+          items = []
+          for item in root.iter("item"):
+              body = item.findtext("content:encoded", default="", namespaces=content_ns) or item.findtext("description", default="")
+              images = [src for src in re.findall(r'<img[^>]+src="([^"]+)"', body) if "/_/stat" not in src]
+              text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body)).strip()
+              items.append({
+                  "title": (item.findtext("title") or "").strip(),
+                  "link": (item.findtext("link") or "").strip(),
+                  "pubDate": (item.findtext("pubDate") or "").strip(),
+                  "thumbnail": images[0] if images else "",
+                  "description": text[:600],
+              })
+
+          if not items:
+              sys.exit("The feed loaded but listed no posts, so medium.json was left unchanged.")
+
+          with open("medium.json", "w", encoding="utf-8") as f:
+              json.dump({"feed": FEED, "items": items}, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+          print(f"Wrote {len(items)} posts to medium.json")
+
+      - name: Commit medium.json if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add medium.json
+          if git diff --cached --quiet; then
+            echo "medium.json is already up to date."
+          else
+            git commit -m "Update medium.json from Medium feed"
+            git push || (git pull --rebase && git push)
+          fi
