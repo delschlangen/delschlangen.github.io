@@ -16,11 +16,14 @@
     <meta property="og:url" content="https://delschlangen.com/">
     <meta property="og:site_name" content="Del Schlangen">
     <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://delschlangen.com/headshot.jpg">
+    <meta property="og:image:alt" content="Del Reis Schlangen">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@editorstatute">
     <meta name="twitter:title" content="Del Schlangen | AI Policy, Emerging Technology & Law">
+    <meta name="twitter:image" content="https://delschlangen.com/headshot.jpg">
     <meta name="twitter:description" content="Del Reis Schlangen is a legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security, writing on emerging technology, civil liberties, national security, and government power.">
 
     <!-- JSON-LD Structured Data -->
@@ -34,6 +37,7 @@
         "additionalName": "Reis",
         "familyName": "Schlangen",
         "url": "https://delschlangen.com",
+        "image": "https://delschlangen.com/headshot.jpg",
         "jobTitle": "Legal and policy researcher, strategic intelligence professional",
         "description": "Legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security, writing on emerging technology, civil liberties, national security, and government power. Based in Washington, D.C.",
         "homeLocation": {
@@ -256,6 +260,41 @@
         }
 
         .hero-content { max-width: 780px; }
+
+        .hero .container { width: 100%; }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-photo {
+            position: relative;
+            width: clamp(200px, 24vw, 300px);
+            margin-right: 14px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.5s forwards;
+        }
+
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            inset: 14px -14px -14px 14px;
+            border: 1px solid rgba(201, 168, 76, 0.45);
+            border-radius: 2px;
+        }
+
+        .hero-photo img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-accent);
+            border-radius: 2px;
+            filter: saturate(0.9);
+        }
 
         .hero-label {
             font-family: var(--font-mono);
@@ -508,7 +547,7 @@
 
         .pub-item {
             display: grid;
-            grid-template-columns: auto 1fr auto;
+            grid-template-columns: auto 1fr;
             gap: 1.5rem;
             align-items: baseline;
             padding: 1.5rem 0;
@@ -724,6 +763,9 @@
             .container { padding: 0 1.25rem; }
             .venue-grid { grid-template-columns: 1fr; }
             .hero { min-height: auto; padding-top: 8rem; padding-bottom: 3rem; }
+            .hero-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+            .hero-photo { order: -1; width: 132px; margin-right: 0; }
+            .hero-photo::before { inset: 8px -8px -8px 8px; }
             section { padding: 3.5rem 0; }
             .blog-card { flex: 0 0 280px; }
             .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -738,7 +780,8 @@
             .nav-links a { font-size: 0.6rem; }
             .hero h1 { font-size: 2.5rem; }
             .hero-bio { font-size: 1rem; }
-            .hero-links { flex-direction: column; }
+            .hero-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .hero-link { justify-content: center; }
         }
     </style>
 </head>
@@ -759,11 +802,12 @@
     <header>
     <section class="hero" role="banner">
         <div class="container">
+            <div class="hero-grid">
             <div class="hero-content">
-                <div class="hero-label">AI · Emerging Technology · Law · National Strategy</div>
+                <div class="hero-label">Emerging Technology · Civil Liberties · National Security</div>
                 <h1>Del Schlangen</h1>
                 <p class="hero-bio">
-                    Del Reis Schlangen is a legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security, writing on emerging technology, civil liberties, national security, and government power. He is based in Washington, D.C., and holds a J.D. from the University of Denver Sturm College of Law, an M.P.P. from American Military University, and a B.S. in Public Administration from George Mason University.
+                    Del Reis Schlangen is a legal and policy researcher and strategic intelligence professional with nearly two decades of experience in intelligence and security, writing on emerging technology, civil liberties, national security, and government power. He is based in Washington, D.C.
                 </p>
                 <div class="hero-links">
                     <a href="https://x.com/DelSchlangen" target="_blank" rel="noopener" class="hero-link">
@@ -784,6 +828,10 @@
                     </a>
                 </div>
             </div>
+                <div class="hero-photo">
+                    <img src="headshot.jpg" alt="Del Reis Schlangen" width="640" height="640" fetchpriority="high">
+                </div>
+            </div>
         </div>
     </section>
     </header>
@@ -797,7 +845,7 @@
                 <a href="https://orionpolicy.org/author/dschlangen/" target="_blank" rel="noopener" class="venue-card">
                     <div class="venue-name">Orion Policy Institute</div>
                     <div class="venue-role">Non-Resident Fellow</div>
-                    <div class="venue-desc">Policy briefs on AI governance, cybersecurity, and federal measurement gaps.</div>
+                    <div class="venue-desc">Policy briefs and op-eds on AI governance, cybersecurity, and federal oversight.</div>
                 </a>
                 <a href="https://reason.com/people/del-schlangen/" target="_blank" rel="noopener" class="venue-card">
                     <div class="venue-name">Reason</div>
@@ -836,7 +884,6 @@
                         <div class="pub-title">Use of ‘Reasonable’ in Gun Control Advocacy</div>
                         <div class="pub-venue">Firearms Research Center · Working Paper</div>
                     </div>
-                    <span class="pub-type">Paper</span>
                 </a>
 
                 <a href="https://firearmsresearchcenter.org/working_papers/congress-banned-a-gun-registry-ai-inference-may-render-the-prohibition-obsolete/" class="pub-item" target="_blank" rel="noopener">
@@ -845,7 +892,6 @@
                         <div class="pub-title">Congress Banned a Gun Registry; AI Inference May Render the Prohibition Obsolete</div>
                         <div class="pub-venue">Firearms Research Center · Working Paper</div>
                     </div>
-                    <span class="pub-type">Paper</span>
                 </a>
 
                 <a href="https://firearmsresearchcenter.org/working_papers/the-debate-over-the-atf-digitizing-gun-sales-records-from-out-of-business-firearms-dealers/" class="pub-item" target="_blank" rel="noopener">
@@ -854,10 +900,17 @@
                         <div class="pub-title">The Debate Over the ATF Digitizing Gun Sales Records from Out-of-Business Firearms Dealers</div>
                         <div class="pub-venue">Firearms Research Center · Working Paper</div>
                     </div>
-                    <span class="pub-type">Paper</span>
                 </a>
 
                 <div class="cv-category-label" style="margin-top: 2.5rem;">Policy Briefs &amp; Commentary</div>
+
+                <a href="https://orionpolicy.org/improving-dojs-ai-use-case-inventory-four-targeted-reforms/" class="pub-item" target="_blank" rel="noopener">
+                    <span class="pub-year">2026</span>
+                    <div class="pub-info">
+                        <div class="pub-title">Improving DOJ’s AI Use Case Inventory: Four Targeted Reforms</div>
+                        <div class="pub-venue">Orion Policy Institute · Op-Ed</div>
+                    </div>
+                </a>
 
                 <a href="https://reason.com/2026/10/05/a-visit-to-a-gun-store-shouldnt-put-you-on-a-government-list/" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-year">2026</span>
@@ -865,7 +918,6 @@
                         <div class="pub-title">A Visit to a Gun Store Shouldn’t Put You on a Government List</div>
                         <div class="pub-venue">Reason · Commentary</div>
                     </div>
-                    <span class="pub-type">Commentary</span>
                 </a>
 
                 <a href="https://reason.com/2026/09/22/flocks-gunfire-alerts-raise-a-new-fourth-amendment-question/" class="pub-item" target="_blank" rel="noopener">
@@ -874,7 +926,6 @@
                         <div class="pub-title">Flock’s Gunfire Alerts Raise a New Fourth Amendment Question</div>
                         <div class="pub-venue">Reason · Commentary</div>
                     </div>
-                    <span class="pub-type">Commentary</span>
                 </a>
 
                 <a href="https://orionpolicy.org/when-ai-finds-a-software-flaw-who-decides-when-the-affected-vendor-is-told/" class="pub-item" target="_blank" rel="noopener">
@@ -883,7 +934,6 @@
                         <div class="pub-title">When AI Finds a Software Flaw, Who Decides When the Affected Vendor Is Told?</div>
                         <div class="pub-venue">Orion Policy Institute · Op-Ed</div>
                     </div>
-                    <span class="pub-type">Op-Ed</span>
                 </a>
 
                 <a href="https://orionpolicy.org/before-medical-ai-learns-on-the-job-fda-should-test-its-teacher/" class="pub-item" target="_blank" rel="noopener">
@@ -892,7 +942,6 @@
                         <div class="pub-title">Before Medical AI Learns on the Job, FDA Should Test Its Teacher</div>
                         <div class="pub-venue">Orion Policy Institute · Policy Brief</div>
                     </div>
-                    <span class="pub-type">Brief</span>
                 </a>
 
                 <a href="https://orionpolicy.org/washingtons-ai-ban-and-reversal-exposed-the-bigger-problem-it-cant-measure-cyber-risk-in-the-real-world/" class="pub-item" target="_blank" rel="noopener">
@@ -901,7 +950,6 @@
                         <div class="pub-title">Washington’s AI Ban and Reversal Exposed the Bigger Problem: It Can’t Measure Cyber Risk in the Real World</div>
                         <div class="pub-venue">Orion Policy Institute · Policy Brief</div>
                     </div>
-                    <span class="pub-type">Brief</span>
                 </a>
 
                 <a href="https://firearmsresearchcenter.org/forum/atfs-new-rules-would-make-gun-records-searchable-thats-the-real-registry-problem/" class="pub-item" target="_blank" rel="noopener">
@@ -910,7 +958,6 @@
                         <div class="pub-title">ATF’s New Rules Would Make Gun Records Searchable. That’s the Real Registry Problem.</div>
                         <div class="pub-venue">Firearms Research Center · Forum Commentary</div>
                     </div>
-                    <span class="pub-type">Commentary</span>
                 </a>
 
                 <!-- ADD FUTURE PUBLICATIONS HERE
@@ -920,7 +967,6 @@
                         <div class="pub-title">Title of Work</div>
                         <div class="pub-venue">Journal or Venue · Type</div>
                     </div>
-                    <span class="pub-type">Paper</span>
                 </a>
                 -->
             </div>
@@ -1039,6 +1085,32 @@
                     </div>
                 </div>
 
+                <div class="cv-category-label" style="margin-top: 2.5rem;">Education</div>
+
+                <div class="cv-entry">
+                    <span class="cv-dates">2026</span>
+                    <div class="cv-info">
+                        <div class="cv-org">University of Denver Sturm College of Law</div>
+                        <div class="cv-role">Juris Doctor</div>
+                    </div>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-dates">2019</span>
+                    <div class="cv-info">
+                        <div class="cv-org">American Military University</div>
+                        <div class="cv-role">Master of Public Policy</div>
+                    </div>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-dates">2016</span>
+                    <div class="cv-info">
+                        <div class="cv-org">George Mason University</div>
+                        <div class="cv-role">B.S. in Public Administration, Cum Laude</div>
+                    </div>
+                </div>
+
                 <div class="cv-category-label" style="margin-top: 2.5rem;">Internships</div>
 
                 <div class="cv-entry">
@@ -1093,7 +1165,7 @@
                 <div class="section-line"></div>
             </div>
             <p style="color: var(--text-secondary); font-weight: 300; font-size: 1.05rem; max-width: 500px; line-height: 1.8;">
-                For collaboration, speaking inquiries, or conversations about AI policy and emerging technology law.
+                For collaboration, speaking inquiries, or conversations about emerging technology, civil liberties, and national security.
             </p>
             <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="https://x.com/DelSchlangen" target="_blank" rel="noopener" class="hero-link">X</a>
@@ -1166,16 +1238,32 @@
 
             let items = null;
 
+            // Primary source: medium.json, refreshed every six hours by the
+            // "Sync Medium feed" GitHub Action and served from this site.
             try {
-                const response = await fetch(endpoints[0]);
+                const response = await fetch('medium.json');
                 if (response.ok) {
                     const data = await response.json();
-                    if (data.status === 'ok' && data.items && data.items.length > 0) {
+                    if (data.items && data.items.length > 0) {
                         items = data.items;
                     }
                 }
             } catch (e) {
-                console.log('rss2json unavailable, trying fallback...');
+                console.log('medium.json unavailable, trying rss2json...');
+            }
+
+            if (!items) {
+                try {
+                    const response = await fetch(endpoints[0]);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.status === 'ok' && data.items && data.items.length > 0) {
+                            items = data.items;
+                        }
+                    }
+                } catch (e) {
+                    console.log('rss2json unavailable, trying fallback...');
+                }
             }
 
             if (!items) {
