@@ -789,6 +789,163 @@
             .hero-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
             .hero-link { justify-content: center; }
         }
+    
+
+        /* Easter eggs */
+        .hero-photo { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+        .hero-photo:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+
+        .photo-flip {
+            position: relative;
+            transform: perspective(900px) rotateY(0deg);
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.2, 1);
+        }
+
+        .photo-flip.flipped { transform: perspective(900px) rotateY(180deg); }
+
+        .photo-flip img,
+        .photo-bot {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .photo-bot {
+            position: absolute;
+            inset: 0;
+            transform: rotateY(180deg);
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-radius: 2px;
+        }
+
+        .photo-bot svg { display: block; width: 100%; height: 100%; }
+
+        .photo-flip.flipped .bot-eye { animation: botBlink 3.2s infinite; transform-origin: center; transform-box: fill-box; }
+
+        @keyframes botBlink {
+            0%, 92%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .nav-mark { user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+
+        .game-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(5, 5, 7, 0.88);
+        }
+
+        .game-overlay.open { display: flex; }
+
+        .game-panel {
+            width: 100%;
+            max-width: 640px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            padding: 1.25rem;
+        }
+
+        .game-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .game-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--text-primary); }
+
+        .game-close {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+        }
+
+        .game-close:hover { color: var(--accent); border-color: var(--accent); }
+
+        .game-sub {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .game-canvas {
+            display: block;
+            width: 100%;
+            aspect-ratio: 600 / 240;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+
+        .site-broken {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: 1001;
+            width: min(88vw, 380px);
+            transform: translate(-50%, -50%);
+            display: none;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+        }
+
+        .site-broken.open { display: block; animation: brokenIn 0.5s ease both; }
+
+        @keyframes brokenIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .site-broken-title { font-family: var(--font-display); font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.4rem; }
+        .site-broken-sub { color: var(--text-secondary); margin-bottom: 0.9rem; }
+
+        .site-broken-score {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.4rem;
+        }
+
+        .site-reset {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: #0a0a0c;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.85rem 1.5rem;
+            cursor: pointer;
+        }
+
+        .site-reset:hover { background: transparent; color: var(--accent); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .site-broken.open { animation: none; }
+            .photo-flip { transition: none; }
+            .photo-flip.flipped .bot-eye { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -834,8 +991,30 @@
                     </a>
                 </div>
             </div>
-                <div class="hero-photo">
-                    <img src="headshot.JPG" alt="Del Reis Schlangen" width="640" height="640" fetchpriority="high">
+                <div class="hero-photo" id="heroPhoto" role="button" tabindex="0" aria-label="Portrait of Del Reis Schlangen. Activate to flip, then again to play a mini game.">
+                    <div class="photo-flip" id="photoFlip">
+                        <img src="headshot.JPG" alt="Del Reis Schlangen" width="640" height="640" fetchpriority="high">
+                        <div class="photo-bot" aria-hidden="true">
+                            <svg viewBox="0 0 200 200" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="100" y1="30" x2="100" y2="46"/>
+                                <circle cx="100" cy="25" r="5" fill="#c9a84c"/>
+                                <rect x="56" y="46" width="88" height="76" rx="10" fill="#111116"/>
+                                <rect x="46" y="70" width="10" height="24" rx="3"/>
+                                <rect x="144" y="70" width="10" height="24" rx="3"/>
+                                <rect class="bot-eye" x="72" y="68" width="18" height="14" rx="4" fill="#c9a84c"/>
+                                <rect class="bot-eye" x="110" y="68" width="18" height="14" rx="4" fill="#c9a84c"/>
+                                <path d="M80 100 Q100 112 120 100"/>
+                                <line x1="90" y1="104" x2="90" y2="109"/>
+                                <line x1="100" y1="106" x2="100" y2="111"/>
+                                <line x1="110" y1="104" x2="110" y2="109"/>
+                                <rect x="90" y="122" width="20" height="10"/>
+                                <path d="M40 176 V152 Q40 132 62 132 H138 Q160 132 160 152 V176" fill="#111116"/>
+                                <path d="M84 132 L100 152 L116 132"/>
+                                <circle cx="100" cy="162" r="2" fill="#c9a84c"/>
+                                <text x="100" y="193" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing="1.5" fill="#c9a84c" stroke="none">DEL-BOT 1.0 · TAP TO RUN</text>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1224,6 +1403,25 @@
         </div>
     </footer>
 
+    <!-- Hidden mini game: tap the portrait, then tap the robot -->
+    <div class="game-overlay" id="gameOverlay" role="dialog" aria-modal="true" aria-label="Del-Bot Run mini game">
+        <div class="game-panel">
+            <div class="game-head">
+                <div class="game-title">Del-Bot Run</div>
+                <button class="game-close" id="gameClose" type="button">Close</button>
+            </div>
+            <div class="game-sub">Tap or press space to jump</div>
+            <canvas class="game-canvas" id="gameCanvas" width="600" height="240"></canvas>
+        </div>
+    </div>
+
+    <div class="site-broken" id="siteBroken" role="alertdialog" aria-label="The site fell apart">
+        <div class="site-broken-title">DEL-BOT is down</div>
+        <div class="site-broken-sub">The site did not survive.</div>
+        <div class="site-broken-score" id="siteBrokenScore"></div>
+        <button class="site-reset" id="siteReset" type="button">Reset site</button>
+    </div>
+
     <script>
         // Configuration
         const MEDIUM_FEED_URL = 'https://medium.com/feed/@delschlangen_22694';
@@ -1369,6 +1567,286 @@
         }
 
         loadMediumPosts();
+
+        // Easter egg: tap the portrait for the robot, tap the robot to play Del-Bot Run.
+        // Losing collapses the page until Reset. (Also opens with a triple-tap on DS, or by typing "play".)
+        (function () {
+            const overlay = document.getElementById('gameOverlay');
+            const canvas = document.getElementById('gameCanvas');
+            const closeBtn = document.getElementById('gameClose');
+            const mark = document.querySelector('.nav-mark');
+            const photo = document.getElementById('heroPhoto');
+            const flip = document.getElementById('photoFlip');
+            const brokenPanel = document.getElementById('siteBroken');
+            const brokenScore = document.getElementById('siteBrokenScore');
+            const resetBtn = document.getElementById('siteReset');
+            const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let broken = false, fallen = [];
+            if (!overlay || !canvas || !canvas.getContext) return;
+            const ctx = canvas.getContext('2d');
+            const W = 600, H = 240, GROUND = 196, GOLD = '#c9a84c', RED = '#b5483a';
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = W * dpr; canvas.height = H * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            let state = 'ready', score = 0, best = 0, speed, bot, tapes, nextGap, last = 0, raf = null, overAt = 0;
+            try { best = parseInt(localStorage.getItem('redTapeBest') || '0', 10) || 0; } catch (e) {}
+
+            function reset() {
+                score = 0; speed = 0.26;
+                bot = { x: 64, y: GROUND - 36, w: 26, h: 36, vy: 0, air: false };
+                tapes = []; nextGap = 380;
+            }
+
+            function publish() { overlay.dataset.state = state; overlay.dataset.score = Math.floor(score); }
+
+            function jump() {
+                if (state === 'ready') { state = 'run'; publish(); return; }
+                if (state === 'over') return;
+                if (!bot.air) { bot.vy = -0.74; bot.air = true; }
+            }
+
+            function update(dt) {
+                if (state !== 'run') return;
+                speed = Math.min(0.58, speed + dt * 0.0000075);
+                score += dt * speed * 0.05;
+                bot.vy += 0.0023 * dt;
+                bot.y += bot.vy * dt;
+                if (bot.y >= GROUND - bot.h) { bot.y = GROUND - bot.h; bot.vy = 0; bot.air = false; }
+                nextGap -= speed * dt;
+                if (nextGap <= 0) {
+                    tapes.push(makeObstacle(KINDS[Math.floor(Math.random() * KINDS.length)], W + 10));
+                    nextGap = 250 + Math.random() * 220 + speed * 260;
+                }
+                for (const t of tapes) t.x -= speed * dt;
+                tapes = tapes.filter((t) => t.x + t.w > -10);
+                for (const t of tapes) {
+                    if (t.kind === 'ghost') continue;
+                    if (bot.x + 4 < t.x + t.w && bot.x + bot.w - 4 > t.x && bot.y + bot.h > GROUND - t.h + 3) {
+                        state = 'over'; overAt = performance.now();
+                        if (score > best) { best = Math.floor(score); try { localStorage.setItem('redTapeBest', String(best)); } catch (e) {} }
+                        publish();
+                        setTimeout(() => { if (state === 'over' && overlay.classList.contains('open')) { close(true); breakSite(); } }, 900);
+                        return;
+                    }
+                }
+            }
+
+            // Obstacles: red tape, CAPTCHA box, kill switch, paperclip, picket sign, a thick bill,
+            // and a "hallucination" that vanishes before the robot reaches it.
+            const KINDS = ['tape', 'tape', 'captcha', 'switch', 'clip', 'sign', 'bill', 'ghost'];
+            const PAPER = '#d9d5cc';
+
+            function makeObstacle(kind, x) {
+                const r = Math.random();
+                if (kind === 'captcha') return { kind, x, w: 36, h: 24 };
+                if (kind === 'switch') return { kind, x, w: 28, h: 24 };
+                if (kind === 'clip') return { kind, x, w: 16, h: 38 };
+                if (kind === 'sign') return { kind, x, w: 32, h: 46 };
+                if (kind === 'bill') return { kind, x, w: 26, h: 26 + Math.round(r * 10) };
+                if (kind === 'ghost') return { kind, x, w: 24, h: 34 };
+                return { kind: 'tape', x, w: 16 + r * 8, h: 22 + Math.random() * 24 };
+            }
+
+            function drawObstacle(t, now) {
+                const x = t.x, top = GROUND - t.h;
+                ctx.lineWidth = 2;
+                if (t.kind === 'captcha') {
+                    ctx.fillStyle = PAPER; ctx.fillRect(x, top, t.w, t.h);
+                    ctx.fillStyle = '#ffffff'; ctx.fillRect(x + 4, top + 7, 10, 10);
+                    ctx.strokeStyle = '#6b6b75'; ctx.lineWidth = 1; ctx.strokeRect(x + 4.5, top + 7.5, 9, 9);
+                    ctx.strokeStyle = '#3f8f5a'; ctx.lineWidth = 2;
+                    ctx.beginPath(); ctx.moveTo(x + 6, top + 12); ctx.lineTo(x + 9, top + 15); ctx.lineTo(x + 14, top + 7); ctx.stroke();
+                    ctx.fillStyle = '#6b6b75'; ctx.fillRect(x + 18, top + 8, 14, 2); ctx.fillRect(x + 18, top + 13, 10, 2);
+                } else if (t.kind === 'switch') {
+                    ctx.fillStyle = '#3d3d4a'; ctx.fillRect(x, GROUND - 9, t.w, 9);
+                    ctx.fillStyle = RED; ctx.beginPath(); ctx.arc(x + t.w / 2, GROUND - 9, 11, Math.PI, 0); ctx.fill();
+                    ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.fillRect(x + 8, GROUND - 17, 5, 2);
+                    ctx.fillStyle = PAPER; ctx.font = "bold 6px 'JetBrains Mono', monospace"; ctx.textAlign = 'center';
+                    ctx.fillText('OFF', x + t.w / 2, GROUND - 2);
+                } else if (t.kind === 'clip') {
+                    ctx.strokeStyle = '#b9bcc4'; ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(x + 11, top + 12); ctx.lineTo(x + 11, GROUND - 7);
+                    ctx.arc(x + 8, GROUND - 7, 3, 0, Math.PI);
+                    ctx.lineTo(x + 5, top + 7);
+                    ctx.arc(x + 9, top + 7, 4, Math.PI, 0);
+                    ctx.lineTo(x + 13, GROUND - 5);
+                    ctx.arc(x + 7.5, GROUND - 5, 5.5, 0, Math.PI);
+                    ctx.lineTo(x + 2, top + 14);
+                    ctx.stroke();
+                } else if (t.kind === 'sign') {
+                    ctx.fillStyle = '#8a6f4a'; ctx.fillRect(x + t.w / 2 - 1.5, top + 20, 3, t.h - 20);
+                    ctx.fillStyle = PAPER; ctx.fillRect(x, top, t.w, 22);
+                    ctx.fillStyle = RED; ctx.textAlign = 'center'; ctx.font = "bold 7px 'JetBrains Mono', monospace";
+                    ctx.fillText('PAUSE', x + t.w / 2, top + 9); ctx.fillText('AI', x + t.w / 2, top + 18);
+                } else if (t.kind === 'bill') {
+                    ctx.fillStyle = PAPER; ctx.fillRect(x, top, t.w, t.h);
+                    ctx.fillStyle = '#8f8b83';
+                    for (let yy = top + 3; yy < GROUND - 1; yy += 3) ctx.fillRect(x, yy, t.w, 1);
+                    ctx.fillStyle = RED; ctx.fillRect(x + t.w - 7, top, 4, t.h);
+                } else if (t.kind === 'ghost') {
+                    const fade = Math.max(0, Math.min(1, (x - bot.x - 70) / 90));
+                    if (fade <= 0) return;
+                    ctx.save();
+                    ctx.globalAlpha = fade * (0.55 + 0.35 * Math.sin(now / 70));
+                    ctx.strokeStyle = '#9d8cff'; ctx.setLineDash([4, 3]); ctx.strokeRect(x + 1, top + 1, t.w - 2, t.h - 2);
+                    ctx.fillStyle = '#9d8cff'; ctx.textAlign = 'center'; ctx.font = "bold 16px 'JetBrains Mono', monospace";
+                    ctx.fillText('?', x + t.w / 2, top + 23);
+                    ctx.restore();
+                } else {
+                    ctx.fillStyle = RED; ctx.fillRect(x, top, t.w, t.h);
+                    ctx.fillStyle = 'rgba(255,255,255,0.28)';
+                    for (let yy = top + 5; yy < GROUND - 3; yy += 9) ctx.fillRect(x, yy, t.w, 2);
+                }
+            }
+
+            function drawBot(now) {
+                const x = bot.x, y = bot.y;
+                ctx.strokeStyle = GOLD; ctx.fillStyle = '#111116'; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(x + 13, y); ctx.lineTo(x + 13, y - 6); ctx.stroke();
+                ctx.fillStyle = GOLD; ctx.beginPath(); ctx.arc(x + 13, y - 8, 2.5, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = '#111116';
+                ctx.fillRect(x + 2, y, 22, 16); ctx.strokeRect(x + 2, y, 22, 16);
+                ctx.fillRect(x + 5, y + 16, 16, 12); ctx.strokeRect(x + 5, y + 16, 16, 12);
+                ctx.fillStyle = GOLD; ctx.fillRect(x + 14, y + 5, 6, 5);
+                const step = bot.air || state !== 'run' ? 0 : (Math.floor(now / 90) % 2 ? 3 : -3);
+                ctx.beginPath();
+                ctx.moveTo(x + 9, y + 28); ctx.lineTo(x + 9 + step, y + 36);
+                ctx.moveTo(x + 17, y + 28); ctx.lineTo(x + 17 - step, y + 36);
+                ctx.stroke();
+            }
+
+            function draw(now) {
+                ctx.clearRect(0, 0, W, H);
+                ctx.strokeStyle = '#2a2a35'; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(0, GROUND + 0.5); ctx.lineTo(W, GROUND + 0.5); ctx.stroke();
+                for (const t of tapes) drawObstacle(t, now);
+                drawBot(now);
+                ctx.font = "12px 'JetBrains Mono', monospace"; ctx.textAlign = 'right'; ctx.fillStyle = GOLD;
+                ctx.fillText(String(Math.floor(score)).padStart(5, '0'), W - 16, 26);
+                ctx.fillStyle = '#5e5e66'; ctx.fillText('BEST ' + String(best).padStart(5, '0'), W - 16, 44);
+                if (state !== 'run') {
+                    ctx.textAlign = 'center'; ctx.fillStyle = '#e8e6e3';
+                    ctx.font = "22px 'DM Serif Display', Georgia, serif";
+                    ctx.fillText(state === 'ready' ? 'Ready?' : 'DEL-BOT is down', W / 2, 96);
+                    ctx.font = "11px 'JetBrains Mono', monospace"; ctx.fillStyle = GOLD;
+                    ctx.fillText(state === 'ready' ? 'TAP TO START' : 'UH OH', W / 2, 120);
+                }
+            }
+
+            function loop(now) {
+                const dt = Math.min(40, now - (last || now)); last = now;
+                update(dt); draw(now);
+                raf = requestAnimationFrame(loop);
+            }
+
+            function open() {
+                if (broken || overlay.classList.contains('open')) return;
+                reset(); state = 'ready'; publish();
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                last = 0; raf = requestAnimationFrame(loop);
+                closeBtn.focus();
+            }
+
+            function close(lost) {
+                overlay.classList.remove('open');
+                if (raf) cancelAnimationFrame(raf);
+                raf = null;
+                if (lost !== true) {
+                    document.body.style.overflow = '';
+                    if (flip) flip.classList.remove('flipped');
+                }
+            }
+
+            const PIECES = 'nav .nav-mark, nav .nav-links li, .hero-photo, .hero-label, .hero h1, .hero-bio, .hero-link, ' +
+                '.venues-label, .venue-card, .section-header, .cv-category-label, .pub-item, .blog-card, .carousel-btn, ' +
+                '.view-all-link, .cv-toggle, .cv-entry, #connect p, .footer-text, .footer-links a';
+
+            function breakSite() {
+                broken = true;
+                document.body.style.overflow = 'hidden';
+                const vh = window.innerHeight;
+                fallen = [];
+                document.querySelectorAll(PIECES).forEach((el) => {
+                    const r = el.getBoundingClientRect();
+                    if (r.bottom < 0 || r.top > vh || r.width === 0) return;
+                    fallen.push(el);
+                    const cs = getComputedStyle(el);
+                    el.style.opacity = cs.opacity;
+                    el.style.animation = 'none';
+                    if (cs.display === 'inline') el.style.display = 'inline-block';
+                    const delay = Math.random() * 0.5, dur = 0.7 + Math.random() * 0.6;
+                    const drop = vh - r.top + 80, spin = (Math.random() * 50 - 25).toFixed(1);
+                    el.style.transition = reduced ? 'none' : 'transform ' + dur.toFixed(2) + 's cubic-bezier(0.55, 0, 0.9, 0.45) ' + delay.toFixed(2) + 's';
+                    el.getBoundingClientRect();
+                    el.style.transform = 'translateY(' + Math.round(drop) + 'px) rotate(' + spin + 'deg)';
+                });
+                if (brokenScore) brokenScore.textContent = 'Score ' + String(Math.floor(score)).padStart(5, '0') + ' · Best ' + String(best).padStart(5, '0');
+                setTimeout(() => {
+                    if (!broken) return;
+                    brokenPanel.classList.add('open');
+                    resetBtn.focus();
+                }, reduced ? 100 : 1500);
+                overlay.dataset.broken = '1';
+            }
+
+            function resetSite() {
+                if (!broken) return;
+                brokenPanel.classList.remove('open');
+                if (flip) flip.classList.remove('flipped');
+                const pieces = fallen; fallen = [];
+                pieces.forEach((el) => {
+                    el.style.transition = reduced ? 'none' : 'transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.1) ' + (Math.random() * 0.25).toFixed(2) + 's';
+                    el.style.transform = '';
+                });
+                setTimeout(() => {
+                    pieces.forEach((el) => { el.style.transition = ''; });
+                    document.body.style.overflow = '';
+                    broken = false;
+                    overlay.dataset.broken = '';
+                }, reduced ? 50 : 1050);
+            }
+
+            if (resetBtn) resetBtn.addEventListener('click', resetSite);
+
+            if (photo && flip) {
+                const activate = () => {
+                    if (broken) return;
+                    if (flip.classList.contains('flipped')) open(); else flip.classList.add('flipped');
+                };
+                photo.addEventListener('click', activate);
+                photo.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); activate(); }
+                });
+            }
+
+            canvas.addEventListener('pointerdown', (e) => { e.preventDefault(); jump(); });
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+
+            let taps = [];
+            if (mark) mark.addEventListener('click', () => {
+                const now = Date.now();
+                taps = taps.filter((t) => now - t < 1200); taps.push(now);
+                if (taps.length >= 3) { taps = []; open(); }
+            });
+
+            let typed = '';
+            document.addEventListener('keydown', (e) => {
+                if (broken) return;
+                if (overlay.classList.contains('open')) {
+                    if (e.key === 'Escape') close();
+                    else if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (document.activeElement === closeBtn) closeBtn.blur(); jump(); }
+                    return;
+                }
+                if (e.key.length === 1) {
+                    typed = (typed + e.key.toLowerCase()).slice(-4);
+                    if (typed === 'play') { typed = ''; open(); }
+                }
+            });
+        })();
     </script>
 
 </body>
